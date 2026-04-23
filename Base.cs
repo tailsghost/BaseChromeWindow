@@ -40,8 +40,6 @@ public class Base : Window
 
     public Base()
     {
-        MinHeight = 200;
-        MinWidth = 200;
         Title = "BaseWindow";
         ResizeMode = ResizeMode.CanResizeWithGrip;
         WindowStyle = WindowStyle.None;
