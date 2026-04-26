@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Interop;
+using System.Windows.Media;
 
 namespace BaseChromeWindow;
 
@@ -34,5 +35,11 @@ public static class MonitorHelper
         var mi = new MONITORINFO { cbSize = Marshal.SizeOf<MONITORINFO>() };
         GetMonitorInfo(hMon, ref mi);
         return mi;
+    }
+
+    public static double GetDevicePixelRatio(Window window)
+    {
+        var dpi = VisualTreeHelper.GetDpi(window);
+        return dpi.DpiScaleX;
     }
 }

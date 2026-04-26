@@ -106,14 +106,19 @@ public class Base : Window
             var work = mi.rcWork;
             Left = work.Left;
             Top = work.Top;
-            MaxWidth = work.Right - work.Left + 8;
-            MaxHeight = work.Bottom - work.Top + 8;
+            MaxWidth = mi.rcWork.Right;
+            Width = mi.rcWork.Right;
+            MaxHeight = (mi.rcMonitor.Bottom - mi.cbSize) / MonitorHelper.GetDevicePixelRatio(this);
+            Height = (mi.rcMonitor.Bottom - mi.cbSize) / MonitorHelper.GetDevicePixelRatio(this);
             WindowState = WindowState.Maximized;
         }
         else
         {
-            MaxWidth = double.PositiveInfinity;
-            MaxHeight = double.PositiveInfinity;
+            var mi = MonitorHelper.GetMonitorInfoForWindow(this);
+            MaxWidth = mi.rcWork.Right;
+            Width = mi.rcWork.Right;
+            MaxHeight = (mi.rcMonitor.Bottom - mi.cbSize) / MonitorHelper.GetDevicePixelRatio(this);
+            Height = (mi.rcMonitor.Bottom - mi.cbSize) / MonitorHelper.GetDevicePixelRatio(this);
             WindowState = WindowState.Normal;
             Left = _prevPosition.left;
             Top = _prevPosition.top;
